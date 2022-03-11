@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SF.Core\SF.Core.csproj" />
+    <ProjectReference Include="..\SF.Manager\SF.Manager.csproj" />
   </ItemGroup>
 
 </Project>

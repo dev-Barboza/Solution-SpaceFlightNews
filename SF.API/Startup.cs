@@ -9,6 +9,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SF.Data.Context;
+using SF.Data.Repository;
+using SF.Manager.Implementation;
+using SF.Manager.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +35,10 @@ namespace SF.API
             services.AddControllers();
         
             services.AddDbContext<SFContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SFConnection")));
-            
+
+            services.AddScoped<IArticleRepository, ArticleRepository>();
+            services.AddScoped<IArticleManager, ArticleManager>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SF.API", Version = "v1" });

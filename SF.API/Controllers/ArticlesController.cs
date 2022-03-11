@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SF.Core.Domain;
+using SF.Manager.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,33 +13,24 @@ namespace SF.API.Controllers
     [ApiController]
     public class ArticlesController : ControllerBase
     {
-       
-        [HttpGet]
-        public IActionResult Get()
+        private readonly IArticleManager articleManager;
+
+        public ArticlesController(IArticleManager articleManager)
         {
-            return Ok(new List<Article>()
-            {
-                new Article
-                {
-                    Id = 1,
-                    Featured = true,
-                    Title = "Titulo1",
-                    Url = "urlteste",
-                    ImageUrl = "imageurlteste",
-                    NewsSite = "newssiteteste",
-                    Summary = "sumary test",
-                    PublishedAt = new DateTime(2021,01,01)
+            this.articleManager = articleManager;
+        }
 
-
-                }
-            });
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            return Ok( await articleManager.GetArticlesAsync());
         }
 
         
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            return Ok(await articleManager.GetArticleAsync(id));
         }
 
         
