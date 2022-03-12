@@ -22,9 +22,7 @@ namespace SF.Data.Migrations
             modelBuilder.Entity("SF.Core.Domain.Article", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<bool>("Featured")
                         .HasColumnType("bit");

@@ -26,5 +26,20 @@ namespace SF.Manager.Implementation
         {
             return await articleRepository.GetArticleAsync(id);
         }
+
+        public async Task DeleteArticleAsync(int id)
+        {
+            await articleRepository.DeleteArticleAsync(id);
+        }
+
+        public async Task<Article> InsertArticleAsync(Article article)
+        {
+            return await articleRepository.InsertArticleAsync(article);
+        }
+
+        public async Task<Article> UpdateArticleAsync(Article article)
+        {
+            return await articleRepository.UpdateArticleAsync(article);
+        }
     }
 }

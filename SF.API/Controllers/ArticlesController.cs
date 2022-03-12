@@ -23,7 +23,7 @@ namespace SF.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok( await articleManager.GetArticlesAsync());
+            return Ok(await articleManager.GetArticlesAsync());
         }
 
         
@@ -35,20 +35,31 @@ namespace SF.API.Controllers
 
         
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post(Article article)
         {
+            var articleInserido = await articleManager.InsertArticleAsync(article);
+            return CreatedAtAction(nameof(Get),new {id = article.Id}, article);
         }
 
         
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(Article article)
         {
+            var articleAtualizado = await articleManager.UpdateArticleAsync(article);
+            if (articleAtualizado == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(articleAtualizado);
         }
 
         
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            await articleManager.DeleteArticleAsync(id);
+            return NoContent();
         }
     }
 }

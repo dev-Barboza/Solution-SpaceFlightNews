@@ -10,8 +10,8 @@ using SF.Data.Context;
 namespace SF.Data.Migrations
 {
     [DbContext(typeof(SFContext))]
-    [Migration("20220311212750_second")]
-    partial class second
+    [Migration("20220312013729_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,9 +24,7 @@ namespace SF.Data.Migrations
             modelBuilder.Entity("SF.Core.Domain.Article", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<bool>("Featured")
                         .HasColumnType("bit");

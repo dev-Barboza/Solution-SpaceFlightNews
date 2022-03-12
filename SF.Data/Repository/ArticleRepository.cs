@@ -33,5 +33,38 @@ namespace SF.Data.Repository
         {
             return await context.Articles.FindAsync(id);
         }
+        
+        //Insert 
+        public async  Task<Article> InsertArticleAsync(Article article)
+        {
+            await context.Articles.AddAsync(article);
+            await context.SaveChangesAsync();
+            return article;
+        }
+
+        //Update
+        public async Task<Article> UpdateArticleAsync(Article article)
+        {
+            var articleConsultado = await context.Articles.FindAsync(article.Id);
+            if (articleConsultado == null)
+            {
+                return null;
+            }
+
+            context.Entry(articleConsultado).CurrentValues.SetValues(article);
+
+            await context.SaveChangesAsync();
+            return articleConsultado;
+            
+        }
+
+        //Delete
+        public async Task DeleteArticleAsync(int id)
+        {
+            var articleConsultado = await context.Articles.FindAsync(id);
+            context.Articles.Remove(articleConsultado);
+            await context.SaveChangesAsync();
+        }
+
     }
 }

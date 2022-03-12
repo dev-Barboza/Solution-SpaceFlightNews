@@ -9,7 +9,11 @@ namespace SF.Manager.Interfaces
 {
     public interface IArticleManager
     {
+        Task DeleteArticleAsync(int id);
         Task<Article> GetArticleAsync(int id);
         Task<IEnumerable<Article>> GetArticlesAsync();
+
+        Task<Article> InsertArticleAsync(Article article);
+        Task<Article> UpdateArticleAsync(Article article);
     }
 }
