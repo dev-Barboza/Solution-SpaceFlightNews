@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +13,7 @@ using SF.Data.Context;
 using SF.Data.Repository;
 using SF.Manager.Implementation;
 using SF.Manager.Interfaces;
+using SF.Manager.Validator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +34,8 @@ namespace SF.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddFluentValidation(p => p.RegisterValidatorsFromAssemblyContaining<ArticleValidator>());
         
             services.AddDbContext<SFContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SFConnection")));
 

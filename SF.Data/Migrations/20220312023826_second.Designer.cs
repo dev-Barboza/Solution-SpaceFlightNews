@@ -10,8 +10,8 @@ using SF.Data.Context;
 namespace SF.Data.Migrations
 {
     [DbContext(typeof(SFContext))]
-    [Migration("20220312013729_initial")]
-    partial class initial
+    [Migration("20220312023826_second")]
+    partial class second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
