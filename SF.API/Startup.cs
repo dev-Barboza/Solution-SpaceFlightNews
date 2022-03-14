@@ -44,7 +44,7 @@ namespace SF.API
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SF.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Space flight News API", Version = "v1", Description = "Este é um desafio para Back-end Developer." });
             });
         }
 
